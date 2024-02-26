@@ -5,6 +5,7 @@
 html {
     @apply h-full bg-white antialiased;
 }
+
 body {
     @apply flex min-h-full;
 }
