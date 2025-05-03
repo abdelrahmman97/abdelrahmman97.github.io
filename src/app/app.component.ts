@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { MainLayoutComponent } from './pages/components/layout/main-layout/main-layout.component';
-import { UnderConstructionComponent } from './features/components/under-construction/under-construction.component';
+import { UnderConstructionComponent } from './shared/components/under-construction/under-construction.component';
 import { environment } from 'src/environments/environments';
 
 @Component( {
