@@ -7,6 +7,10 @@ import { HttpClient, HttpClientModule, provideHttpClient, withInterceptors } fro
 // import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideAnimations } from '@angular/platform-browser/animations';
 // import { httpInterceptor } from './core/interceptors/http.interceptor';
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+
+import { provideHighlightOptions } from 'ngx-highlightjs';
 
 // export function HttpLoaderFactory( http: HttpClient ) {
 // 	return new TranslateHttpLoader( http );
@@ -21,6 +25,13 @@ export const appConfig: ApplicationConfig = {
 		provideRouter( routes ),
 		importProvidersFrom( HttpClientModule ),
 		provideAnimations(),
+		importProvidersFrom( [ LoadingBarModule, LoadingBarRouterModule ] ),
+		provideHighlightOptions( {
+			coreLibraryLoader: () => import( 'highlight.js/lib/core' ),
+			languages: {
+				javascript: () => import( 'highlight.js/lib/languages/javascript' ),
+			},
+		} )
 		// importProvidersFrom(
 		// 	TranslateModule.forRoot( {
 		// 		loader: {
