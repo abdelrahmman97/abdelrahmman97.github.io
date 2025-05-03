@@ -1,0 +1,176 @@
+<div class="h-full page-container">
+	<div class="flex flex-row h-full relative">
+		<div class="flex flex-row w-20" [ngClass]="{ 'sm:w-80 ': isExploererOpen }">
+			<!-- --------------------------- side nav links ---------------------------- -->
+			<div class="h-full border-e border-[#1E2D3D] w-20">
+				<ul class="flex flex-col gap-0 items-center justify-start w-full">
+					@for (item of sidebarItems; track $index) {
+					<li class="w-full">
+						<a
+							[title]="item.title"
+							(click)="setSelectSideBarItem(item)"
+							class="flex justify-center w-full h-auto py-3 text-[#607B96] hover:bg-[#002039] cursor-pointer"
+							[ngClass]="{ 'bg-[#002039]': item.isSelected }"
+							[innerHTML]="item.icon | appSafeHtml"></a>
+					</li>
+					}
+				</ul>
+			</div>
+			<!-- ------------------------------- folders explorer ------------------------------- -->
+			@if (isExploererOpen) {
+			<div
+				class="h-full border-e border-[#1E2D3D] w-full sm:w-60 absolute sm:static left-20 right-0 dark:bg-[#011627]">
+				<div class="flex flex-col">
+					@if (selectedSidebarItem?.explorerItems?.length == 0) {
+					<p class="text-center pt-4 text-[#607B96]">No folders here</p>
+					} @else { @for (section of selectedSidebarItem?.explorerItems; track $index) {
+					<div class="flex flex-col gap-4 items-start justify-start w-full overflow-hidden relative">
+						<div
+							(click)="setSelectedExplorerSection(section)"
+							class="flex flex-row items-center py-3 gap-2 text-white w-full h-12 border-b border-[#1E2D3D] cursor-pointer select-none">
+							<div>
+								@if (section.isSelected) {
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									class="icon">
+									<path d="M12 16L6 10H18L12 16Z"></path>
+								</svg>
+								} @else {
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									class="icon">
+									<path d="M16 12L10 18V6L16 12Z"></path>
+								</svg>
+								}
+							</div>
+							<p class="text-white text-base">{{ section.title | addUnderscoreAndDash : false }}</p>
+						</div>
+						@if (section.isSelected) { @if (section.folders?.length == 0) {
+						<p class="text-center pt-4 text-[#607B96]">No folders here</p>
+						} @else {
+						<ul
+							class="flex flex-col gap-2 w-full overflow-y-scroll overflow-x-hidden transition-all duration-300 ease-in-out mb-7">
+							@for (folder of section.folders; track $index) {
+							<li class="w-full">
+								<a (click)="setSelectedFolder(folder)" class="flex w-full ps-3 cursor-pointer">
+									<div class="flex flex-row items-center gap-2 text-white text-base w-full">
+										<span>
+											@if (folder.isSelected) {
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 24 24"
+												fill="currentColor"
+												class="w-4 h-4">
+												<path
+													d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path>
+											</svg>
+											} @else {
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 24 24"
+												fill="currentColor"
+												class="w-4 h-4">
+												<path
+													d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path>
+											</svg>
+											}
+										</span>
+										<span [ngClass]="folder.color">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 24 24"
+												fill="currentColor"
+												class="w-4 h-4">
+												<path
+													d="M22 8V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V7H21C21.5523 7 22 7.44772 22 8ZM12.4142 5H2V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z"></path>
+											</svg>
+										</span>
+										<span>{{ folder.title | addUnderscoreAndDash : false }}</span>
+									</div>
+								</a>
+								<!-- -------------------------------- files -------------------------------- -->
+								<ul class="flex flex-col items-start justify-start overflow-hidden h-full w-full">
+									@if (folder.isSelected) { @for (file of folder.files; track $index) {
+									<li class="w-full ps-9 py-1">
+										<a
+											(click)="setSelectedFile(file)"
+											class="flex flex-row items-center gap-2 flex-nowrap truncate text-[#607B96] hover:text-[#8ba1b7] cursor-pointer">
+											<span>
+												<svg
+													class="w-4 h-4"
+													xmlns="http://www.w3.org/2000/svg"
+													viewBox="0 0 24 24"
+													fill="currentColor">
+													<path
+														d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM7 15.5V11.5L9 13.5L11 11.5V15.5H13V8.5H11L9 10.5L7 8.5H5V15.5H7ZM18 12.5V8.5H16V12.5H14L17 15.5L20 12.5H18Z"></path>
+												</svg>
+											</span>
+											<span>
+												{{ file.title | addUnderscoreAndDash : false }}
+											</span>
+										</a>
+									</li>
+									} }
+								</ul>
+							</li>
+							}
+						</ul>
+						} }
+					</div>
+					} }
+				</div>
+			</div>
+			}
+		</div>
+		<!-- ----------------------- files details ------------------------ -->
+		<!-- <div class="flex flex-col w-1/2 h-full border-e border-[#1E2D3D]"> -->
+		<div class="flex flex-col w-full h-full">
+			@if (selectedFile) {
+			<!-- -------------------------------- tabs --------------------------------- -->
+			<div class="border-b border-[#1E2D3D] w-full h-12 flex">
+				@if(selectedFile){
+				<div
+					[title]="selectedFile.title"
+					class="flex flex-row items-center justify-start gap-8 max-w-72 py-3 px-3 text-[#607B96] hover:text-[#8ba1b7] border-e border-[#1E2D3D] cursor-pointer select-none truncate">
+					<div class="truncate">{{ selectedFile.title }}</div>
+					<span (click)="selectedFile = null; formattedContent = []; lineNumbers = []">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+							<path
+								d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path>
+						</svg>
+					</span>
+				</div>
+				}
+			</div>
+			<!-- ------------------------------ contents ------------------------------- -->
+			<div class="flex flex-row justify-start items-start gap-0 pt-6 text-[#607B96] overflow-y-scroll pb-40">
+				<div class="flex flex-col gap-2 me-4">
+					<ul class="flex flex-col ps-8 pe-4 select-none">
+						@for (number of lineNumbers; track $index) {
+						<li>
+							<span>{{ number }}</span>
+						</li>
+						}
+					</ul>
+				</div>
+				<div class="flex flex-col w-[710px]">
+					@for (line of formattedContent; track $index) {
+					<div class="flex flex-row w-full">
+						<p class="block w-full">{{ line }}</p>
+					</div>
+					}
+				</div>
+			</div>
+			} @else {
+			<div class="flex justify-center items-center text-center h-full select-none">
+				<p class="text-[#607B96]">Select a file to view its content</p>
+			</div>
+			}
+		</div>
+		<!-- <div class="flex flex-col w-1/2 h-full">code snippest</div> -->
+	</div>
+</div>

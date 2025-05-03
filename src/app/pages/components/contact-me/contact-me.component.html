@@ -1,0 +1,205 @@
+<div class="h-full page-container">
+	<div class="flex flex-row h-full relative">
+		<div class="lg:flex flex-row w-80 hidden">
+			<div class="h-full w-full border-e border-[#1E2D3D] dark:bg-[#011627]">
+				<div class="flex flex-col w-full">
+					@for (section of sections; track $index) {
+					<div class="flex flex-col gap-4 items-start justify-start w-full overflow-hidden relative">
+						<div
+							(click)="section.isSelected = !section.isSelected"
+							class="flex flex-row items-center py-3 gap-2 text-white w-full h-12 border-b border-[#1E2D3D] cursor-pointer select-none">
+							<div>
+								@if (section.isSelected) {
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									class="icon">
+									<path d="M12 16L6 10H18L12 16Z"></path>
+								</svg>
+								} @else {
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									class="icon">
+									<path d="M16 12L10 18V6L16 12Z"></path>
+								</svg>
+								}
+							</div>
+							<p class="text-white text-base">{{ section.title | addUnderscoreAndDash : false }}</p>
+						</div>
+						@if (section.isSelected) {
+						<ul
+							class="flex flex-col gap-2 w-full overflow-y-scroll overflow-x-hidden transition-all duration-300 ease-in-out mb-7">
+							@for (folder of section.folders; track $index) {
+							<li class="w-full">
+								<a class="flex w-full ps-3 cursor-pointer">
+									<div class="flex flex-row items-center gap-2 text-white text-base w-full">
+										<i [ngClass]="folder.icon"></i>
+										<span>{{ folder.title | addUnderscoreAndDash : false }}</span>
+									</div>
+								</a>
+							</li>
+							}
+						</ul>
+						}
+					</div>
+					}
+				</div>
+			</div>
+		</div>
+
+		<div class="flex flex-col flex-grow h-full">
+			<!-- -------------------------------- tabs --------------------------------- -->
+			<div class="border-b border-[#1E2D3D] w-full h-12 flex">
+				<div
+					class="flex flex-row items-center justify-start gap-8 py-3 px-3 text-[#607B96] hover:text-[#8ba1b7] border-e border-[#1E2D3D] cursor-pointer select-none truncate">
+					<div class="truncate max-w-72">
+						{{ 'contact' }}
+					</div>
+					<span>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+							<path
+								d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path>
+						</svg>
+					</span>
+				</div>
+			</div>
+
+			<!-- ---------------------------- small screens ---------------------------- -->
+			<div class="flex lg:hidden w-full">
+				<div class="flex flex-col h-full w-full">
+					@for (section of sections; track $index) {
+					<div class="flex flex-col gap-4 items-start justify-start w-full overflow-hidden relative">
+						<div
+							(click)="section.isSelected = !section.isSelected"
+							class="flex flex-row items-center py-3 gap-2 text-white w-full h-12 bg-[#1E2D3D] cursor-pointer select-none">
+							<div>
+								@if (section.isSelected) {
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									class="icon">
+									<path d="M12 16L6 10H18L12 16Z"></path>
+								</svg>
+								} @else {
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									class="icon">
+									<path d="M16 12L10 18V6L16 12Z"></path>
+								</svg>
+								}
+							</div>
+							<p class="text-white text-base">{{ section.title | addUnderscoreAndDash : false }}</p>
+						</div>
+						@if (section.isSelected) {
+						<ul
+							class="flex flex-col gap-2 w-full overflow-y-scroll overflow-x-hidden transition-all duration-300 ease-in-out mb-7">
+							@for (folder of section.folders; track $index) {
+							<li class="w-full">
+								<a class="flex w-full ps-3 cursor-pointer">
+									<div class="flex flex-row items-center gap-2 text-white text-base w-full">
+										<i [ngClass]="folder.icon"></i>
+										<span>{{ folder.title | addUnderscoreAndDash : false }}</span>
+									</div>
+								</a>
+							</li>
+							}
+						</ul>
+						}
+					</div>
+					}
+				</div>
+			</div>
+
+			<!-- ------------------------------- content ------------------------------- -->
+			<div class="flex flex-row justify-start items-start gap-0 h-[calc(100dvh-10rem)] p-0">
+				<!-- ---------------------------- contact form ----------------------------- -->
+				<div
+					class="flex flex-col justify-center items-center xl:w-1/2 w-full h-full border-e border-[#1E2D3D] overflow-hidden">
+					@if (!submitSuccess) {
+					<form class="flex-col justify-center items-center w-full h-full overflow-y-auto" [formGroup]="contactForm" (submit)="onSubmit()">
+						<div class="flex flex-col justify-center items-center gap-4 w-full py-20 pb-5">
+							<div class="flex flex-col gap-1 w-80">
+								<label for="name" class="text-[#607B96] text-base">
+									{{ 'name:' | addUnderscoreAndDash }}
+								</label>
+								<input
+									(input)="updateCode()"
+									type="text"
+									name="name"
+									id="name"
+									formControlName="name"
+									class="w-full border border-[#1E2D3D] bg-[#011221] p-2 rounded-lg focus:outline-1 outline-[#607B96] text-base text-[#465E77]" />
+							</div>
+							<div class="flex flex-col gap-1 w-80">
+								<label for="email" class="text-[#607B96] text-base">
+									{{ 'email:' | addUnderscoreAndDash }}
+								</label>
+								<input
+									(input)="updateCode()"
+									type="email"
+									name="email"
+									id="email"
+									formControlName="email"
+									class="w-full border border-[#1E2D3D] bg-[#011221] p-2 rounded-lg focus:outline-1 outline-[#607B96] text-base text-[#465E77]" />
+							</div>
+							<div class="flex flex-col gap-1 w-80">
+								<label for="subject" class="text-[#607B96] text-base">
+									{{ 'subject:' | addUnderscoreAndDash }}
+								</label>
+								<input
+									(input)="updateCode()"
+									type="text"
+									name="subject"
+									id="subject"
+									formControlName="subject"
+									class="w-full border border-[#1E2D3D] bg-[#011221] p-2 rounded-lg focus:outline-1 outline-[#607B96] text-base text-[#465E77]" />
+							</div>
+							<div class="flex flex-col gap-1 w-80">
+								<label for="message" class="text-[#607B96] text-base">
+									{{ 'message:' | addUnderscoreAndDash }}
+								</label>
+								<textarea
+									(input)="updateCode()"
+									name="message"
+									id="message"
+									rows="4"
+									formControlName="message"
+									class="w-full border border-[#1E2D3D] bg-[#011221] p-2 rounded-lg focus:outline-1 outline-[#607B96] text-base text-[#465E77]"></textarea>
+							</div>
+							<div class="flex flex-col justify-start w-full px-40">
+								<button class="btn-default self-start" type="submit">
+									{{ 'submit message' | addUnderscoreAndDash : false }}
+								</button>
+							</div>
+						</div>
+					</form>
+					} @else {
+					<div class="flex w-full items-center justify-start">
+						<div class="flex flex-col gap-2 w-full items-center justify-start">
+							<h1 class="text-2xl text-white text-center font-bold">Thank you! 🤘</h1>
+							<p class="text-lg text-[#607B96] text-center">Your message has been accepted.</p>
+							<p class="text-lg text-[#607B96] text-center">You will receive answer really soon!</p>
+							<button type="button" class="btn-default mt-2" (click)="resetForm()">
+								{{ 'send new message' | addUnderscoreAndDash : false }}
+							</button>
+						</div>
+					</div>
+					}
+				</div>
+				<!-- ---------------------------- contact code ----------------------------- -->
+				<div class="xl:flex hidden flex-row justify-start w-1/2 h-full overflow-hidden">
+					<div class="flex flex-col justify-center items-center w-full">
+						<pre
+							class="px-10 w-full text-wrap max-w-[90ch] overflow-y-auto"><code [highlight]="contactCode" language="js"></code></pre>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
