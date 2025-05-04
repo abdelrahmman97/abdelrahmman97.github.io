@@ -1,0 +1,34 @@
+{
+	"tags": [
+	  {
+		"id": 0,
+		"icon": "",
+		"title": "All",
+		"selected": false
+	  },
+	  {
+		"id": 1,
+		"icon": "ri-html5-fill",
+		"title": "HTML",
+		"selected": false
+	  },
+	  {
+		"id": 2,
+		"icon": "ri-css3-fill",
+		"title": "CSS",
+		"selected": false
+	  },
+	  {
+		"id": 3,
+		"icon": "ri-angularjs-fill",
+		"title": "Angular",
+		"selected": false
+	  },
+	  {
+		"id": 4,
+		"icon": "ri-tailwind-css-fill",
+		"title": "TaillwindCss",
+		"selected": false
+	  }
+	]
+}
