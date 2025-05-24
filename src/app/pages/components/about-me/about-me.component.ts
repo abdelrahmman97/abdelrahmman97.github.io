@@ -1,20 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
 import { SafeHtmlPipe } from 'src/app/shared/pipes/safe-html-pipe.pipe';
 import { UnderscoreDashPipe } from 'src/app/shared/pipes/underscore-dash.pipe';
 import { SideBarItem, ExplorerFolder, FolderFile, ExplorerItem } from "./../../models/details.models";
 import { FoldersColor } from '../../models/folder.colors.enum';
 
 @Component( {
-	selector: 'app-about-me',
-	standalone: true,
-	imports: [
-		CommonModule,
-		UnderscoreDashPipe,
-		SafeHtmlPipe
-	],
-	templateUrl: './about-me.component.html',
-	styleUrl: './about-me.component.css'
+    selector: 'app-about-me',
+    templateUrl: './about-me.component.html',
+	styleUrl: './about-me.component.css',
+	changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        CommonModule,
+        UnderscoreDashPipe,
+        SafeHtmlPipe
+    ],
 } )
 export class AboutMeComponent implements OnInit {
 

@@ -1,20 +1,20 @@
 import { ProjectsService } from './../../services/projects.service';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Project, Tags } from '../../models/projects.model';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UnderscoreDashPipe } from 'src/app/shared/pipes/underscore-dash.pipe';
 
 @Component( {
-	selector: 'app-projects',
-	standalone: true,
-	imports: [
-		CommonModule,
-		RouterModule,
-		UnderscoreDashPipe
-	],
-	templateUrl: './projects.component.html',
-	styleUrl: './projects.component.css'
+    selector: 'app-projects',
+    templateUrl: './projects.component.html',
+	styleUrl: './projects.component.css',
+	changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        CommonModule,
+        RouterModule,
+        UnderscoreDashPipe
+    ],
 } )
 export class ProjectsComponent implements OnInit {
 	tags: Tags[] = [];

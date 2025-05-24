@@ -1,11 +1,11 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 
 @Component( {
-	selector: 'app-game',
-	standalone: true,
-	imports: [],
-	templateUrl: './game.component.html',
-	styleUrl: './game.component.css'
+    selector: 'app-game',
+    templateUrl: './game.component.html',
+	styleUrl: './game.component.css',
+	changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [],
 } )
 export class GameComponent implements OnInit {
 	@ViewChild( 'gameCanvas', { static: true } ) canvas!: ElementRef<HTMLCanvasElement>;

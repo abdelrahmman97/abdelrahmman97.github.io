@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Highlight } from 'ngx-highlightjs';
@@ -7,16 +7,16 @@ import { ExplorerItem } from '../../models/details.models';
 
 
 @Component( {
-	selector: 'app-contact-me',
-	standalone: true,
-	templateUrl: './contact-me.component.html',
+    selector: 'app-contact-me',
+    templateUrl: './contact-me.component.html',
 	styleUrl: './contact-me.component.css',
-	imports: [
-		ReactiveFormsModule,
-		UnderscoreDashPipe,
-		Highlight,
-		NgClass
-	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        ReactiveFormsModule,
+        UnderscoreDashPipe,
+        Highlight,
+        NgClass
+    ]
 } )
 export class ContactMeComponent implements OnInit {
 	sections: ExplorerItem[] = [];

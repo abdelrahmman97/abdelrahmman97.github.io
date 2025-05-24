@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component( {
-	selector: 'app-hero',
-	standalone: true,
-	imports: [],
-	templateUrl: './hero.component.html',
-	styleUrl: './hero.component.css'
+    selector: 'app-hero',
+    templateUrl: './hero.component.html',
+    styleUrl: './hero.component.css',
+	changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [],
 } )
 export class HeroComponent {
 

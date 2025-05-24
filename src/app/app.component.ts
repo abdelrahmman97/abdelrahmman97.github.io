@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MainLayoutComponent } from './pages/components/layout/main-layout/main-layout.component';
 import { UnderConstructionComponent } from './shared/components/under-construction/under-construction.component';
 import { environment } from 'src/environments/environments';
@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environments';
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: [ './app.component.css' ],
-	standalone: true,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		UnderConstructionComponent,
 		MainLayoutComponent
@@ -18,7 +18,7 @@ export class AppComponent {
 
 	isUnderConstruction: boolean = true;
 
-	constructor () {
+	constructor() {
 		this.isUnderConstruction = environment.UnderConstruction ? true : false;
 	}
 }

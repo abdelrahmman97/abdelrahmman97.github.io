@@ -11,15 +11,14 @@ interface NavLinks {
 
 @Component( {
 	selector: 'app-header',
-	standalone: true,
+	templateUrl: './header.component.html',
+	styleUrl: './header.component.css',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		CommonModule,
 		RouterModule,
 		UnderscoreDashPipe
 	],
-	templateUrl: './header.component.html',
-	styleUrl: './header.component.css',
-	changeDetection: ChangeDetectionStrategy.OnPush,
 } )
 export class HeaderComponent implements OnInit {
 
@@ -28,7 +27,7 @@ export class HeaderComponent implements OnInit {
 	isDarkActive: boolean = false;
 	isMenuActive: boolean = false;
 
-	constructor () { }
+	constructor() { }
 
 	ngOnInit(): void {
 		this.toggleTheme();
