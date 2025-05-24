@@ -1,9 +1,59 @@
-@import './../node_modules/remixicon/fonts//remixicon.css';
-@import 'highlight.js/styles/dark.css';
+@import './../node_modules/remixicon/fonts//remixicon.css' layer(base);
+@import 'highlight.js/styles/dark.css' layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --breakpoint-2xl: 1530px;
+  --breakpoint-3xl: 1800px;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility page-container {
+  width: 100%;
+  height: calc(100vh - 7rem);
+}
+
+@utility btn-primary {
+  @apply py-[10px] px-[14px] bg-[#FEA55F] text-[#01080E] font-semibold rounded-[0.5em] hover:bg-[#FFAC6B] focus:outline-hidden;
+}
+
+@utility btn-default {
+  @apply py-[10px] px-[14px] bg-[#1C2B3A] text-white font-semibold rounded-[0.5em] hover:bg-[#263B50] focus:outline-hidden;
+}
+
+@utility btn-ghost {
+  @apply py-[10px] px-[14px] bg-transparent text-white font-semibold rounded-[0.5em] focus:outline-hidden;
+}
+
+@utility icon {
+  @apply w-6 h-6;
+}
+
+@utility circular-animation {
+  animation-name: move-in-circle;
+  animation-duration: 25s;
+  animation-iteration-count: infinite;
+}
 
 @layer base {
 	* {
@@ -25,32 +75,6 @@
 }
 
 @layer components {
-	.page-container {
-		width: 100%;
-		height: calc(100vh - 7rem);
-	}
-
-	.btn-primary {
-		@apply py-[10px] px-[14px] bg-[#FEA55F] text-[#01080E] font-semibold rounded-[0.5em] hover:bg-[#FFAC6B] focus:outline-none;
-	}
-
-	.btn-default {
-		@apply py-[10px] px-[14px] bg-[#1C2B3A] text-white font-semibold rounded-[0.5em] hover:bg-[#263B50] focus:outline-none;
-	}
-
-	.btn-ghost {
-		@apply py-[10px] px-[14px] bg-transparent text-white font-semibold rounded-[0.5em] hover:border-opacity-50 focus:outline-none;
-	}
-
-	.icon {
-		@apply w-6 h-6;
-	}
-
-	.circular-animation {
-		animation-name: move-in-circle;
-		animation-duration: 25s;
-		animation-iteration-count: infinite;
-	}
 
 	@keyframes move-in-circle {
 		0% {
