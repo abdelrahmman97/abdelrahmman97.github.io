@@ -1,4 +1,8 @@
 node_modules
 build
 dist
+docs
 **/*.spec.ts
+*.md
+*.json
+*.js

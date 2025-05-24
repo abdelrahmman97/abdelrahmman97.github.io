@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "update": "ng update @angular/cli@^17 @angular/core@^17",
-    "lint": "ng lint"
+    "lint": "ng lint",
+		"format": "prettier --write ."
   },
   "private": true,
   "dependencies": {
