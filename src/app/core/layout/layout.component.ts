@@ -19,7 +19,7 @@ export class LayoutComponent {
 	headerScrollClass = computed( () => this.scrollPosition() > 0 );
 	showScrollToTop = computed( () => this.scrollPosition() > 300 );
 
-	@HostListener( 'window:scroll', [ '$event' ] )
+	@HostListener( 'window:scroll' )
 	onWindowScroll(): void {
 		this.scrollPosition.set( window.scrollY );
 	}
@@ -29,6 +29,6 @@ export class LayoutComponent {
 	}
 
 	prepareRoute( outlet: RouterOutlet ): string {
-		return outlet?.activatedRouteData?.['animation'] ?? '';
+		return outlet?.activatedRouteData?.[ 'animation' ] ?? '';
 	}
 }
