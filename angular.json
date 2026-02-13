@@ -16,6 +16,7 @@
             "outputPath": {
               "base": "docs/"
             },
+            "baseHref": "https://abdelrahmman97.github.io/",
             "index": "src/index.html",
             "polyfills": [
               "zone.js"
