@@ -1,0 +1,252 @@
+:host {
+	display: block;
+	height: 100%;
+}
+
+.sticky-top {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+.background {
+	border-radius: inherit;
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	-webkit-mask-image: radial-gradient(circle at 60% 5%, black 0%, black 15%, transparent 60%);
+	mask-image: radial-gradient(circle at 60% 5%, black 0%, black 15%, transparent 60%);
+}
+
+.background .tiles {
+	opacity: 1;
+	transition: opacity 0.25s;
+}
+
+.background .tiles .tile {
+	position: absolute;
+	background-color: rgba(16, 185, 129, 0.08);
+	-webkit-animation-duration: 8s;
+	animation-duration: 8s;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	opacity: 0;
+}
+
+.background .tiles .tile.tile-4,
+.background .tiles .tile.tile-6,
+.background .tiles .tile.tile-10 {
+	-webkit-animation-delay: -2s;
+	animation-delay: -2s;
+}
+
+.background .tiles .tile.tile-3,
+.background .tiles .tile.tile-5,
+.background .tiles .tile.tile-8 {
+	-webkit-animation-delay: -4s;
+	animation-delay: -4s;
+}
+
+.background .tiles .tile.tile-2,
+.background .tiles .tile.tile-9 {
+	-webkit-animation-delay: -6s;
+	animation-delay: -6s;
+}
+
+.background .tiles .tile.tile-1 {
+	top: 0;
+	left: 0;
+	height: 10%;
+	width: 22.5%;
+}
+
+.background .tiles .tile.tile-2 {
+	top: 0;
+	left: 22.5%;
+	height: 10%;
+	width: 27.5%;
+}
+
+.background .tiles .tile.tile-3 {
+	top: 0;
+	left: 50%;
+	height: 10%;
+	width: 27.5%;
+}
+
+.background .tiles .tile.tile-4 {
+	top: 0;
+	left: 77.5%;
+	height: 10%;
+	width: 22.5%;
+}
+
+.background .tiles .tile.tile-5 {
+	top: 10%;
+	left: 0;
+	height: 22.5%;
+	width: 22.5%;
+}
+
+.background .tiles .tile.tile-6 {
+	top: 10%;
+	left: 22.5%;
+	height: 22.5%;
+	width: 27.5%;
+}
+
+.background .tiles .tile.tile-7 {
+	top: 10%;
+	left: 50%;
+	height: 22.5%;
+	width: 27.5%;
+}
+
+.background .tiles .tile.tile-8 {
+	top: 10%;
+	left: 77.5%;
+	height: 22.5%;
+	width: 22.5%;
+}
+
+.background .tiles .tile.tile-9 {
+	top: 32.5%;
+	left: 50%;
+	height: 22.5%;
+	width: 27.5%;
+}
+
+.background .tiles .tile.tile-10 {
+	top: 32.5%;
+	left: 77.5%;
+	height: 22.5%;
+	width: 22.5%;
+}
+
+@-webkit-keyframes tile {
+
+	0%,
+	12.5%,
+	100% {
+		opacity: 1;
+	}
+
+	25%,
+	82.5% {
+		opacity: 0;
+	}
+}
+
+@keyframes tile {
+
+	0%,
+	12.5%,
+	100% {
+		opacity: 1;
+	}
+
+	25%,
+	82.5% {
+		opacity: 0;
+	}
+}
+
+.background .line {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	transition: opacity 0.35s;
+}
+
+.background .line:before,
+.background .line:after {
+	content: "";
+	position: absolute;
+	background-color: var(--card-line-color);
+	transition: transform 0.35s;
+}
+
+.background .line:before {
+	left: 0;
+	right: 0;
+	height: 1px;
+	transform-origin: 0 50%;
+	transform: scaleX(0);
+}
+
+.background .line:after {
+	top: 0;
+	bottom: 0;
+	width: 1px;
+	transform-origin: 50% 0;
+	transform: scaleY(0);
+}
+
+.background .line.line-1:before {
+	top: 10%;
+}
+
+.background .line.line-1:after {
+	left: 22.5%;
+}
+
+.background .line.line-1:before,
+.background .line.line-1:after {
+	transition-delay: 0.3s;
+}
+
+.background .line.line-2:before {
+	top: 32.5%;
+}
+
+.background .line.line-2:after {
+	left: 50%;
+}
+
+.background .line.line-2:before,
+.background .line.line-2:after {
+	transition-delay: 0.15s;
+}
+
+.background .line.line-3:before {
+	top: 55%;
+}
+
+.background .line.line-3:after {
+	right: 22.5%;
+}
+
+.background .tiles .tile {
+	-webkit-animation-name: tile;
+	animation-name: tile;
+}
+
+.background .line {
+	opacity: 1;
+	transition-duration: 0.15s;
+}
+
+.background .line:before {
+	transform: scaleX(1);
+}
+
+.background .line:after {
+	transform: scaleY(1);
+}
+
+.background .line.line-1:before,
+.background .line.line-1:after {
+	transition-delay: 0s;
+}
+
+.background .line.line-2:before,
+.background .line.line-2:after {
+	transition-delay: 0.15s;
+}
+
+.background .line.line-3:before,
+.background .line.line-3:after {
+	transition-delay: 0.3s;
+}

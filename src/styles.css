@@ -3,11 +3,11 @@
 
 @import 'tailwindcss';
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --breakpoint-2xl: 1530px;
-  --breakpoint-3xl: 1800px;
+	--breakpoint-2xl: 1530px;
+	--breakpoint-3xl: 1800px;
 }
 
 /*
@@ -19,40 +19,41 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
 }
 
 @utility page-container {
-  width: 100%;
-  height: calc(100vh - 7rem);
+	width: 100%;
+	height: calc(100vh - 7rem);
 }
 
 @utility btn-primary {
-  @apply py-[10px] px-[14px] bg-[#FEA55F] text-[#01080E] font-semibold rounded-[0.5em] hover:bg-[#FFAC6B] focus:outline-hidden;
+	@apply py-[10px] px-[14px] bg-[#FEA55F] text-[#01080E] font-semibold rounded-[0.5em] hover:bg-[#FFAC6B] focus:outline-hidden;
 }
 
 @utility btn-default {
-  @apply py-[10px] px-[14px] bg-[#1C2B3A] text-white font-semibold rounded-[0.5em] hover:bg-[#263B50] focus:outline-hidden;
+	@apply py-[10px] px-[14px] bg-[#1C2B3A] text-white font-semibold rounded-[0.5em] hover:bg-[#263B50] focus:outline-hidden;
 }
 
 @utility btn-ghost {
-  @apply py-[10px] px-[14px] bg-transparent text-white font-semibold rounded-[0.5em] focus:outline-hidden;
+	@apply py-[10px] px-[14px] bg-transparent text-white font-semibold rounded-[0.5em] focus:outline-hidden;
 }
 
 @utility icon {
-  @apply w-6 h-6;
+	@apply w-6 h-6;
 }
 
 @utility circular-animation {
-  animation-name: move-in-circle;
-  animation-duration: 25s;
-  animation-iteration-count: infinite;
+	animation-name: move-in-circle;
+	animation-duration: 25s;
+	animation-iteration-count: infinite;
 }
 
 @layer base {
@@ -65,7 +66,7 @@
 	}
 
 	body {
-		@apply flex min-h-full;
+		@apply block h-full;
 	}
 
 	@font-face {
@@ -75,7 +76,6 @@
 }
 
 @layer components {
-
 	@keyframes move-in-circle {
 		0% {
 			transform: rotate(0deg) translateX(20px) rotate(0deg);
@@ -110,36 +110,4 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
 	background: #1c2b3a;
-}
-
-/* ----------------------------- code highlight ----------------------------- */
-code.hljs,
-.hljs {
-	color: #607B96 !important;
-	background: transparent !important;
-}
-
-.hljs-keyword {
-	color: #c98bdf;
-}
-
-.hljs-string {
-	color: #fea55f;
-}
-
-.hljs-attr {
-	color: #607b96;
-}
-
-.hljs-function {
-	color: #C98BDF;
-}
-
-.hljs-variable,
-.hljs-title{
-	color: #5565E8;
-}
-
-input:-internal-autofill-selected {
-	background-color: #011221 !important;
 }

@@ -3,7 +3,12 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 // import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClient, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import {
+	HttpClient,
+	provideHttpClient,
+	withInterceptors,
+	withInterceptorsFromDi,
+} from '@angular/common/http';
 // import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideAnimations } from '@angular/platform-browser/animations';
 // import { httpInterceptor } from './core/interceptors/http.interceptor';
@@ -22,16 +27,16 @@ import { provideHighlightOptions } from 'ngx-highlightjs';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
-		provideRouter( routes ),
-		provideHttpClient( withInterceptorsFromDi() ),
+		provideRouter(routes),
+		provideHttpClient(withInterceptorsFromDi()),
 		provideAnimations(),
-		importProvidersFrom( [ LoadingBarModule, LoadingBarRouterModule ] ),
-		provideHighlightOptions( {
-			coreLibraryLoader: () => import( 'highlight.js/lib/core' ),
+		importProvidersFrom([LoadingBarModule, LoadingBarRouterModule]),
+		provideHighlightOptions({
+			coreLibraryLoader: () => import('highlight.js/lib/core'),
 			languages: {
-				javascript: () => import( 'highlight.js/lib/languages/javascript' ),
+				javascript: () => import('highlight.js/lib/languages/javascript'),
 			},
-		} )
+		}),
 		// importProvidersFrom(
 		// 	TranslateModule.forRoot( {
 		// 		loader: {
@@ -42,5 +47,5 @@ export const appConfig: ApplicationConfig = {
 		// 	} )
 		// ),
 		// provideHttpClient( withInterceptors( [ httpInterceptor ] ) )
-	]
+	],
 };

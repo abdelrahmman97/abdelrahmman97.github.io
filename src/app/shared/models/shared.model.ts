@@ -1,4 +1,4 @@
 export interface NavLinks {
 	title: string;
-	router?: string
+	router?: string;
 }

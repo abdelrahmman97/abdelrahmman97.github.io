@@ -1,11 +1,18 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	ElementRef,
+	HostListener,
+	OnInit,
+	ViewChild,
+} from '@angular/core';
 
 @Component( {
-    selector: 'app-game',
-    templateUrl: './game.component.html',
+	selector: 'app-game',
+	templateUrl: './game.component.html',
 	styleUrl: './game.component.css',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [],
+	imports: [],
 } )
 export class GameComponent implements OnInit {
 	@ViewChild( 'gameCanvas', { static: true } ) canvas!: ElementRef<HTMLCanvasElement>;
@@ -21,7 +28,7 @@ export class GameComponent implements OnInit {
 	isGameOver: boolean = false;
 	isNewScore: boolean = false;
 
-	constructor () { }
+	constructor() { }
 
 	ngOnInit(): void {
 		this.ctx = this.canvas.nativeElement.getContext( '2d' )!;
@@ -78,7 +85,7 @@ export class GameComponent implements OnInit {
 	}
 
 	drawSnake() {
-		this.snake.forEach( segment => {
+		this.snake.forEach( ( segment ) => {
 			this.ctx.fillStyle = '#43D9AD';
 			this.ctx.fillRect( segment.x * this.gridSize, segment.y * this.gridSize, this.gridSize, this.gridSize );
 		} );
@@ -93,7 +100,12 @@ export class GameComponent implements OnInit {
 		const head = this.snake[ 0 ];
 
 		// Check if snake hits the wall
-		if ( head.x < 0 || head.y < 0 || head.x >= this.canvas.nativeElement.width / this.gridSize || head.y >= this.canvas.nativeElement.height / this.gridSize ) {
+		if (
+			head.x < 0 ||
+			head.y < 0 ||
+			head.x >= this.canvas.nativeElement.width / this.gridSize ||
+			head.y >= this.canvas.nativeElement.height / this.gridSize
+		) {
 			this.endGame();
 		}
 
@@ -119,7 +131,7 @@ export class GameComponent implements OnInit {
 	handleKeydown( event: KeyboardEvent ) {
 		switch ( event.key ) {
 			case 'Enter':
-				this.startGame()
+				this.startGame();
 				break;
 			case 'ArrowUp':
 				if ( this.direction.y === 0 ) this.direction = { x: 0, y: -1 };
@@ -135,5 +147,4 @@ export class GameComponent implements OnInit {
 				break;
 		}
 	}
-
 }

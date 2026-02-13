@@ -1,13 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { UnderscoreDashPipe } from '../../pipes/underscore-dash.pipe';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-
-interface NavLinks {
-	title: string;
-	router?: string
-}
+import { ThemeService } from '../../services/theme.service';
 
 @Component( {
 	selector: 'app-header',
@@ -15,65 +8,16 @@ interface NavLinks {
 	styleUrl: './header.component.css',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
-		CommonModule,
-		RouterModule,
-		UnderscoreDashPipe
+		RouterModule
 	],
 } )
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-	navLinkes: NavLinks[] = [];
-	smallScreenMenu: NavLinks[] = [];
-	isDarkActive: boolean = false;
-	isMenuActive: boolean = false;
+	private _themeService = inject( ThemeService );
+	isDarkThemeActive = computed( () => this._themeService.currentTheme )
 
-	constructor() { }
-
-	ngOnInit(): void {
-		this.toggleTheme();
-
-		this.navLinkes = [
-			{
-				title: 'hello',
-				router: ''
-			},
-			{
-				title: 'about me',
-				router: '/about-me'
-			},
-			{
-				title: 'projects',
-				router: '/projects'
-			},
-		]
-
-		this.smallScreenMenu = [
-			{
-				title: 'hello',
-				router: ''
-			},
-			{
-				title: 'about me',
-				router: '/about-me'
-			},
-			{
-				title: 'projects',
-				router: '/projects'
-			},
-			{
-				title: 'contact me',
-				router: '/contact'
-			},
-		]
-	}
-
-	toggleTheme() {
-		this.isDarkActive = !this.isDarkActive;
-		document.body.classList.toggle( 'dark' );
-	}
-
-	toggleMenu() {
-		this.isMenuActive = !this.isMenuActive;
+	toggleTheme(): void {
+		this._themeService.toggleTheme();
 	}
 
 }

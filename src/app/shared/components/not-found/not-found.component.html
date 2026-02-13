@@ -1,0 +1,36 @@
+<main class="h-full flex flex-col items-center justify-center">
+	<div class="background z-10">
+		<div class="tiles">
+			<div class="tile tile-1"></div>
+			<div class="tile tile-2"></div>
+			<div class="tile tile-3"></div>
+			<div class="tile tile-4"></div>
+
+			<div class="tile tile-5"></div>
+			<div class="tile tile-6"></div>
+			<div class="tile tile-7"></div>
+			<div class="tile tile-8"></div>
+
+			<div class="tile tile-9"></div>
+			<div class="tile tile-10"></div>
+		</div>
+
+		<div class="line line-1"></div>
+		<div class="line line-2"></div>
+		<div class="line line-3"></div>
+	</div>
+
+	<div class="h-full px-1 bg-gradient-to-b from-transparent via-gray-100 to-transparent">
+		<div
+			class="max-w-2xl mx-auto flex flex-col items-center justify-center gap-5 h-full z-50 px-5 bg-white dark:bg-gray-950 dark:shadow relative">
+			<h1 class="text-8xl font-bold">404</h1>
+			<p class="text-2xl font-bold">🤔 Page not found 🚧</p>
+			<p>The page you are looking for doesn't exist or has been moved.</p>
+			<a
+				[routerLink]="['/']"
+				class="cursor-pointer bg-gradient-to-r from-gray-700 to-gray-800 text-white px-8 py-4 rounded-lg font-semibold hover:from-gray-800 hover:to-gray-900 transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+				Go Home Page
+			</a>
+		</div>
+	</div>
+</main>

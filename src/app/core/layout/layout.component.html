@@ -1,0 +1,39 @@
+<main
+	class="container max-w-2xl mx-auto h-full transition-all border-x"
+	[class.border-transparent]="!headerScrollClass()"
+	[class.dark:border-gray-800]="headerScrollClass()">
+	<div class="background z-10">
+		<div class="tiles">
+			<div class="tile tile-1"></div>
+			<div class="tile tile-2"></div>
+			<div class="tile tile-3"></div>
+			<div class="tile tile-4"></div>
+
+			<div class="tile tile-5"></div>
+			<div class="tile tile-6"></div>
+			<div class="tile tile-7"></div>
+			<div class="tile tile-8"></div>
+
+			<div class="tile tile-9"></div>
+			<div class="tile tile-10"></div>
+		</div>
+
+		<div class="line line-1"></div>
+		<div class="line line-2"></div>
+		<div class="line line-3"></div>
+	</div>
+
+	<div class="flex flex-col h-full z-50 bg-white dark:bg-gray-950 dark:shadow relative">
+		<!-- <ngx-loading-bar color="#4D5BCE"></ngx-loading-bar> -->
+		<app-header
+			[class.sticky]="headerScrollClass()"
+			[class.top-0]="headerScrollClass()"
+			[class.border-b]="headerScrollClass()"
+			[class.backdrop-blur-sm]="headerScrollClass()"
+			[class.border-transparent]="!headerScrollClass()"
+			[class.dark:border-gray-800]="headerScrollClass()"
+			class="transition-all"></app-header>
+		<router-outlet></router-outlet>
+		<app-footer></app-footer>
+	</div>
+</main>
