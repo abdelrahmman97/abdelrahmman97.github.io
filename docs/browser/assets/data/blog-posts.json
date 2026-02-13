@@ -1,0 +1,31 @@
+{
+	"posts": [
+		{
+			"id": 1,
+			"title": "Getting Started with Angular Signals",
+			"summary": "An introduction to Angular's reactive primitive, signals, and how they simplify state management in modern Angular applications.",
+			"date": "2025-01-15",
+			"readTime": "5 min read",
+			"tags": ["Angular", "TypeScript"],
+			"url": ""
+		},
+		{
+			"id": 2,
+			"title": "Tailwind CSS 4: What's New",
+			"summary": "Exploring the latest features in Tailwind CSS v4 including the new engine, custom variants, and performance improvements.",
+			"date": "2025-02-01",
+			"readTime": "4 min read",
+			"tags": ["CSS", "TailwindCSS"],
+			"url": ""
+		},
+		{
+			"id": 3,
+			"title": "Building Accessible Web Applications",
+			"summary": "Best practices for creating web apps that are usable by everyone, including proper ARIA attributes and keyboard navigation.",
+			"date": "2025-02-10",
+			"readTime": "6 min read",
+			"tags": ["Accessibility", "HTML"],
+			"url": ""
+		}
+	]
+}

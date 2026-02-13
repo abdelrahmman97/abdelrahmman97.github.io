@@ -72,6 +72,7 @@
 	@font-face {
 		font-family: 'FiraCode';
 		src: url('./assets/fonts/FiraCode-VariableFont_wght.ttf');
+		font-display: swap;
 	}
 }
 

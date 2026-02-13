@@ -1,97 +1,94 @@
 <section class="p-6 max-w-3xl mx-auto">
-	<h2 class="text-3xl font-semibold mb-4 text-gray-900 dark:text-gray-400">⚡Projects</h2>
+	<h2 class="text-3xl font-semibold mb-4 text-gray-900 dark:text-gray-400">⚡ Projects</h2>
 	<p class="text-gray-800 dark:text-gray-600 leading-relaxed">What I've been working on</p>
 </section>
 
 <section class="p-6 max-w-3xl mx-auto">
-	@if (true) {
-		<p class="text-gray-800 dark:text-gray-600 leading-relaxed">Comming soon...</p>
+	@if (isLoading()) {
+		<p class="text-gray-500 dark:text-gray-600">Loading projects...</p>
 	} @else {
-		<div>
-			<div class="grid">
-				<div class="card">
-					<span class="icon">
-						<svg
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								d="M14.5 3.5C14.5 3.5 14.5 5.5 12 5.5C9.5 5.5 9.5 3.5 9.5 3.5H7.5L4.20711 6.79289C3.81658 7.18342 3.81658 7.81658 4.20711 8.20711L6.5 10.5V20.5H17.5V10.5L19.7929 8.20711C20.1834 7.81658 20.1834 7.18342 19.7929 6.79289L16.5 3.5H14.5Z" />
-						</svg>
-					</span>
-					<h4>Products</h4>
-					<p>Standard chunk of Lorem Ipsum used since the 1500s is showed below for those interested.</p>
-					<div class="shine"></div>
-					<div class="background">
-						<div class="tiles">
-							<div class="tile tile-1"></div>
-							<div class="tile tile-2"></div>
-							<div class="tile tile-3"></div>
-							<div class="tile tile-4"></div>
-
-							<div class="tile tile-5"></div>
-							<div class="tile tile-6"></div>
-							<div class="tile tile-7"></div>
-							<div class="tile tile-8"></div>
-
-							<div class="tile tile-9"></div>
-							<div class="tile tile-10"></div>
-						</div>
-
-						<div class="line line-1"></div>
-						<div class="line line-2"></div>
-						<div class="line line-3"></div>
-					</div>
-				</div>
-
-				<div class="card">
-					<span class="icon">
-						<svg
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								d="M4.5 9.5V5.5C4.5 4.94772 4.94772 4.5 5.5 4.5H9.5C10.0523 4.5 10.5 4.94772 10.5 5.5V9.5C10.5 10.0523 10.0523 10.5 9.5 10.5H5.5C4.94772 10.5 4.5 10.0523 4.5 9.5Z" />
-							<path
-								d="M13.5 18.5V14.5C13.5 13.9477 13.9477 13.5 14.5 13.5H18.5C19.0523 13.5 19.5 13.9477 19.5 14.5V18.5C19.5 19.0523 19.0523 19.5 18.5 19.5H14.5C13.9477 19.5 13.5 19.0523 13.5 18.5Z" />
-							<path d="M4.5 19.5L7.5 13.5L10.5 19.5H4.5Z" />
-							<path
-								d="M16.5 4.5C18.1569 4.5 19.5 5.84315 19.5 7.5C19.5 9.15685 18.1569 10.5 16.5 10.5C14.8431 10.5 13.5 9.15685 13.5 7.5C13.5 5.84315 14.8431 4.5 16.5 4.5Z" />
-						</svg>
-					</span>
-					<h4>Categories</h4>
-					<p>Standard chunk of Lorem Ipsum used since the 1500s is showed below for those interested.</p>
-					<div class="shine"></div>
-					<div class="background">
-						<div class="tiles">
-							<div class="tile tile-1"></div>
-							<div class="tile tile-2"></div>
-							<div class="tile tile-3"></div>
-							<div class="tile tile-4"></div>
-
-							<div class="tile tile-5"></div>
-							<div class="tile tile-6"></div>
-							<div class="tile tile-7"></div>
-							<div class="tile tile-8"></div>
-
-							<div class="tile tile-9"></div>
-							<div class="tile tile-10"></div>
-						</div>
-
-						<div class="line line-1"></div>
-						<div class="line line-2"></div>
-						<div class="line line-3"></div>
-					</div>
-				</div>
-			</div>
+		<!-- Tag Filters -->
+		<div class="flex flex-wrap gap-2 mb-8">
+			@for (tag of tags(); track tag.id) {
+				<button
+					(click)="selectTag(tag.id)"
+					class="px-4 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer"
+					[class.bg-gray-900]="selectedTagId() === tag.id"
+					[class.dark:bg-white]="selectedTagId() === tag.id"
+					[class.text-white]="selectedTagId() === tag.id"
+					[class.dark:text-gray-900]="selectedTagId() === tag.id"
+					[class.bg-gray-100]="selectedTagId() !== tag.id"
+					[class.dark:bg-gray-800]="selectedTagId() !== tag.id"
+					[class.text-gray-700]="selectedTagId() !== tag.id"
+					[class.dark:text-gray-400]="selectedTagId() !== tag.id"
+					[class.hover:bg-gray-200]="selectedTagId() !== tag.id"
+					[class.dark:hover:bg-gray-700]="selectedTagId() !== tag.id">
+					@if (tag.icon) {
+						<i [class]="tag.icon + ' mr-1'"></i>
+					}
+					{{ tag.title }}
+				</button>
+			}
 		</div>
+
+		<!-- Project Cards -->
+		@if (filteredProjects().length === 0) {
+			<p class="text-gray-500 dark:text-gray-600">No projects found for this filter.</p>
+		} @else {
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+				@for (project of filteredProjects(); track project.id) {
+					<article
+						class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden hover:shadow-md dark:hover:shadow-gray-900 transition-shadow">
+						<img
+							[src]="project.image"
+							[alt]="project.title"
+							loading="lazy"
+							class="w-full h-40 object-cover" />
+						<div class="p-4 flex flex-col gap-2">
+							<h3 class="text-base font-semibold text-gray-900 dark:text-gray-300 capitalize">
+								{{ project.title }}
+							</h3>
+							<p class="text-sm text-gray-700 dark:text-gray-500 line-clamp-2">
+								{{ project.description }}
+							</p>
+							<div class="flex flex-wrap gap-1.5 mt-1">
+								@for (tagId of project.tags; track tagId) {
+									@for (tag of tags(); track tag.id) {
+										@if (tag.id === tagId && tag.id !== 0) {
+											<span
+												class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-2 py-0.5 rounded-full">
+												{{ tag.title }}
+											</span>
+										}
+									}
+								}
+							</div>
+							<div class="flex gap-3 mt-2">
+								@if (project.githubLink) {
+									<a
+										[href]="project.githubLink"
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label="View source code on GitHub"
+										class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors">
+										GitHub
+									</a>
+								}
+								@if (project.liveLink) {
+									<a
+										[href]="project.liveLink"
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label="View live demo"
+										class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors">
+										Live Demo
+									</a>
+								}
+							</div>
+						</div>
+					</article>
+				}
+			</div>
+		}
 	}
 </section>

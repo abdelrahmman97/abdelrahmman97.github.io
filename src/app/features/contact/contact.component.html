@@ -16,37 +16,41 @@
 
 	<div class="flex flex-col gap-8 items-start w-full">
 		<!-- Success Message -->
-		@if (submitSuccess()) {
-			<div class="text-center p-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl text-white">
-				<div
-					class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-					<span class="text-4xl">✓</span>
+		<div aria-live="polite" role="status">
+			@if (submitSuccess()) {
+				<div class="text-center p-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl text-white">
+					<div
+						class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+						<span class="text-4xl">✓</span>
+					</div>
+					<h3 class="text-2xl font-bold mb-2">Message Sent Successfully!</h3>
+					<p class="text-lg mb-6 opacity-90">
+						Thank you for reaching out. I'll get back to you within 24 hours.
+					</p>
+					<button
+						(click)="resetForm()"
+						class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors duration-200">
+						Send Another Message
+					</button>
 				</div>
-				<h3 class="text-2xl font-bold mb-2">Message Sent Successfully!</h3>
-				<p class="text-lg mb-6 opacity-90">
-					Thank you for reaching out. I'll get back to you within 24 hours.
-				</p>
-				<button
-					(click)="resetForm()"
-					class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors duration-200">
-					Send Another Message
-				</button>
-			</div>
-		}
+			}
+		</div>
 
 		<!-- Error Message -->
-		@if (errorMessage()) {
-			<div class="p-4 bg-red-50 border border-red-200 rounded-lg">
-				<div class="flex items-center">
-					<div class="flex-shrink-0">
-						<span class="text-red-400 text-xl">⚠️</span>
-					</div>
-					<div class="ml-3">
-						<p class="text-sm text-red-800">{{ errorMessage() }}</p>
+		<div aria-live="polite" role="alert">
+			@if (errorMessage()) {
+				<div class="p-4 bg-red-50 border border-red-200 rounded-lg">
+					<div class="flex items-center">
+						<div class="flex-shrink-0">
+							<span class="text-red-400 text-xl">⚠️</span>
+						</div>
+						<div class="ml-3">
+							<p class="text-sm text-red-800">{{ errorMessage() }}</p>
+						</div>
 					</div>
 				</div>
-			</div>
-		}
+			}
+		</div>
 
 		<!-- Contact Form -->
 		@if (!submitSuccess()) {
@@ -122,16 +126,24 @@
 					<textarea
 						id="message"
 						formControlName="message"
+						maxlength="500"
 						class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 text-gray-950 dark:text-gray-500 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-gray-400 focus:border-transparent placeholder:text-gray-500 dark:placeholder:text-gray-700 resize-vertical"
 						[class.border-gray-300]="!hasFieldError('message')"
 						[class.border-red-500]="hasFieldError('message')"
 						rows="5"
 						placeholder="Tell me about your project or inquiry..."></textarea>
-					@if (hasFieldError('message')) {
-						<div class="text-red-500 text-sm mt-1">
-							{{ getFieldError('message') }}
-						</div>
-					}
+					<div class="flex justify-between items-center mt-1">
+						@if (hasFieldError('message')) {
+							<span class="text-red-500 text-sm">
+								{{ getFieldError('message') }}
+							</span>
+						} @else {
+							<span></span>
+						}
+						<span class="text-xs text-gray-400">
+							{{ form.get('message')?.value?.length || 0 }} / 500
+						</span>
+					</div>
 				</div>
 
 				<!-- Submit Button -->

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import emailjs from '@emailjs/browser';
+import { environment } from 'src/environments/environments';
 
 interface ContactFormData {
 	name: string;
@@ -88,7 +89,7 @@ export class ContactComponent implements OnInit {
 			name: [ '', [ Validators.required, Validators.minLength( 2 ) ] ],
 			email: [ '', [ Validators.required, Validators.email ] ],
 			subject: [ '', [ Validators.required, Validators.minLength( 5 ) ] ],
-			message: [ '', [ Validators.required, Validators.minLength( 10 ) ] ],
+			message: [ '', [ Validators.required, Validators.minLength( 10 ), Validators.maxLength( 500 ) ] ],
 			time: formattedTime
 		} );
 	}
@@ -129,10 +130,10 @@ export class ContactComponent implements OnInit {
 	}
 	private async sendEmail( formData: any ): Promise<any> {
 		return emailjs.send(
-			'service_5a2glf1',
-			'template_nw9otxq',
+			environment.emailJs.serviceId,
+			environment.emailJs.templateId,
 			formData,
-			'WVdtXFYpyQMRM4A4a'
+			environment.emailJs.publicKey,
 		);
 	}
 
@@ -169,6 +170,10 @@ export class ContactComponent implements OnInit {
 		if ( field.errors[ 'minlength' ] ) {
 			const requiredLength = field.errors[ 'minlength' ].requiredLength;
 			return `${ this.getFieldDisplayName( fieldName ) } must be at least ${ requiredLength } characters`;
+		}
+		if ( field.errors[ 'maxlength' ] ) {
+			const maxLength = field.errors[ 'maxlength' ].requiredLength;
+			return `${ this.getFieldDisplayName( fieldName ) } must be at most ${ maxLength } characters`;
 		}
 		if ( field.errors[ 'email' ] ) {
 			return 'Please enter a valid email address';

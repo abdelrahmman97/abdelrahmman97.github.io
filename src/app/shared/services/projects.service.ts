@@ -1,17 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { Project, Tags } from '../models/projects.model';
+import { Observable } from 'rxjs';
 
-@Injectable({
+@Injectable( {
 	providedIn: 'root',
-})
+} )
 export class ProjectsService {
-	constructor(private _http: HttpClient) {}
-
-	getTags() {
-		return this._http.get<any>('/assets/data/tags.json');
+	private _http = inject( HttpClient );
+	getTags(): Observable<{ tags: Tags[] }> {
+		return this._http.get<{ tags: Tags[] }>( '/assets/data/tags.json' );
 	}
 
-	getProjects() {
-		return this._http.get<any>('/assets/data/projects.json');
+	getProjects(): Observable<{ projects: Project[]; }> {
+		return this._http.get<{ projects: Project[] }>( '/assets/data/projects.json' );
 	}
 }

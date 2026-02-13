@@ -1,17 +1,22 @@
 <nav class="flex items-center justify-between flex-col-reverse sm:flex-row gap-10 sm:gap-0 w-full p-4">
 	<div class="flex flex-row items-center gap-4">
-		<div
-			class="bg-[url('./assets/images/me.jpg')] bg-contain size-20 rounded-full outline-0 hover:outline-4 outline-offset-2 transition"></div>
+		<img
+			src="assets/images/me.jpg"
+			alt="Abdelrahman Mahmoud profile photo"
+			loading="lazy"
+			class="size-20 rounded-full outline-0 hover:outline-4 outline-offset-2 transition object-cover" />
 		<div class="flex flex-col">
 			<p class="font-bold select-none text-gray-950 dark:text-white">
 				Abdelrahman
 				<br />
 				Mahmoud
 			</p>
-			<p class="text-xs text-gray-700 dark:text-gray-400 flex flex-row items-center gap-2">
+			<a
+				routerLink="/contact"
+				class="text-xs text-gray-700 dark:text-gray-400 flex flex-row items-center gap-2 hover:text-gray-950 dark:hover:text-gray-200 transition-colors">
 				<span class="status bg-green-500 before:bg-green-500"></span>
 				Available for work
-			</p>
+			</a>
 		</div>
 	</div>
 
@@ -20,7 +25,9 @@
 		<a
 			class="flex items-center justify-center text-xl hover:bg-gray-100 dark:hover:bg-gray-950 rounded-full w-10 h-10 group transition-all"
 			routerLink="/"
-			routerLinkActive="text-blue-500">
+			[routerLinkActiveOptions]="{ exact: true }"
+			routerLinkActive="text-blue-500 bg-gray-200 dark:bg-gray-950"
+			aria-label="Home">
 			🏠
 			<span
 				class="group-hover:flex hidden bg-white dark:bg-white/5 text-nowrap absolute text-xs font-medium text-gray-950 dark:text-gray-400 shadow-md top-16 sm:top-[5.5rem] border dark:border-white/8 rounded-lg px-1 py-0.5">
@@ -30,7 +37,9 @@
 		<a
 			class="flex items-center justify-center text-xl hover:bg-gray-100 dark:hover:bg-gray-950 rounded-full w-10 h-10 group transition-all"
 			routerLink="/about"
-			routerLinkActive="text-blue-500">
+			[routerLinkActiveOptions]="{ exact: true }"
+			routerLinkActive="text-blue-500 bg-gray-200 dark:bg-gray-950"
+			aria-label="About">
 			🙋‍♂️
 			<span
 				class="group-hover:flex hidden bg-white dark:bg-white/5 text-nowrap absolute text-xs font-medium text-gray-950 dark:text-gray-400 shadow-md top-16 sm:top-[5.5rem] border dark:border-white/8 rounded-lg px-1 py-0.5">
@@ -40,7 +49,9 @@
 		<a
 			class="flex items-center justify-center text-xl hover:bg-gray-100 dark:hover:bg-gray-950 rounded-full w-10 h-10 group transition-all"
 			routerLink="/projects"
-			routerLinkActive="text-blue-500">
+			[routerLinkActiveOptions]="{ exact: true }"
+			routerLinkActive="text-blue-500 bg-gray-200 dark:bg-gray-950"
+			aria-label="Projects">
 			💼
 			<span
 				class="group-hover:flex hidden bg-white dark:bg-white/5 text-nowrap absolute text-xs font-medium text-gray-950 dark:text-gray-400 shadow-md top-16 sm:top-[5.5rem] border dark:border-white/8 rounded-lg px-1 py-0.5">
@@ -50,7 +61,9 @@
 		<a
 			class="flex items-center justify-center text-xl hover:bg-gray-100 dark:hover:bg-gray-950 rounded-full w-10 h-10 group transition-all"
 			routerLink="/blog"
-			routerLinkActive="text-blue-500">
+			[routerLinkActiveOptions]="{ exact: true }"
+			routerLinkActive="text-blue-500 bg-gray-200 dark:bg-gray-950"
+			aria-label="Blog">
 			📃
 			<span
 				class="group-hover:flex hidden bg-white dark:bg-white/5 text-nowrap absolute text-xs font-medium text-gray-950 dark:text-gray-400 shadow-md top-16 sm:top-[5.5rem] border dark:border-white/8 rounded-lg px-1 py-0.5">
@@ -60,7 +73,9 @@
 		<a
 			class="flex items-center justify-center text-xl hover:bg-gray-100 dark:hover:bg-gray-950 rounded-full w-10 h-10 group transition-all"
 			routerLink="/contact"
-			routerLinkActive="text-blue-500">
+			[routerLinkActiveOptions]="{ exact: true }"
+			routerLinkActive="text-blue-500 bg-gray-200 dark:bg-gray-950"
+			aria-label="Contact">
 			📞
 			<span
 				class="group-hover:flex hidden bg-white dark:bg-white/5 text-nowrap absolute text-xs font-medium text-gray-950 dark:text-gray-400 shadow-md top-16 sm:top-[5.5rem] border dark:border-white/8 rounded-lg px-1 py-0.5">
@@ -73,6 +88,7 @@
 		<a
 			class="flex items-center justify-center text-xl hover:bg-gray-100 dark:hover:bg-gray-950 rounded-full w-10 h-10 group transition-all cursor-pointer"
 			role="button"
+			[attr.aria-label]="isDarkThemeActive() ? 'Switch to light theme' : 'Switch to dark theme'"
 			(click)="toggleTheme()">
 			@if (isDarkThemeActive()) {
 				☀️
