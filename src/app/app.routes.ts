@@ -24,6 +24,12 @@ export const routes: Routes = [
 				loadComponent: () => import( './features/blog/blog.component' ).then( ( c ) => c.BlogComponent ),
 			},
 			{
+				path: 'blog/:slug',
+				title: 'Article | Abdelrahman Mahmoud',
+				data: { animation: 'BlogPostPage' },
+				loadComponent: () => import( './features/blog/blog-post/blog-post.component' ).then( ( c ) => c.BlogPostComponent ),
+			},
+			{
 				path: 'projects',
 				title: 'Projects | Abdelrahman Mahmoud',
 				data: { animation: 'ProjectsPage' },

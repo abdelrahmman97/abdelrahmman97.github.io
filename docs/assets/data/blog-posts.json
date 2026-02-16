@@ -1,31 +1,40 @@
 {
 	"posts": [
 		{
-			"id": 1,
-			"title": "Getting Started with Angular Signals",
-			"summary": "An introduction to Angular's reactive primitive, signals, and how they simplify state management in modern Angular applications.",
-			"date": "2025-01-15",
-			"readTime": "5 min read",
-			"tags": ["Angular", "TypeScript"],
-			"url": ""
-		},
-		{
-			"id": 2,
-			"title": "Tailwind CSS 4: What's New",
-			"summary": "Exploring the latest features in Tailwind CSS v4 including the new engine, custom variants, and performance improvements.",
-			"date": "2025-02-01",
-			"readTime": "4 min read",
-			"tags": ["CSS", "TailwindCSS"],
-			"url": ""
-		},
-		{
-			"id": 3,
+			"slug": "building-accessible-web-applications",
 			"title": "Building Accessible Web Applications",
-			"summary": "Best practices for creating web apps that are usable by everyone, including proper ARIA attributes and keyboard navigation.",
-			"date": "2025-02-10",
+			"description": "Best practices for creating web apps that are usable by everyone, including proper ARIA attributes and keyboard navigation.",
+			"date": "2025-02-10T00:00:00.000Z",
+			"tags": [
+				"Accessibility",
+				"HTML"
+			],
 			"readTime": "6 min read",
-			"tags": ["Accessibility", "HTML"],
-			"url": ""
+			"content": "<p>Web accessibility (a11y) ensures that websites and applications are usable by everyone, including people with disabilities. It&#39;s not just a nice-to-have — it&#39;s essential for building inclusive products.</p>\n<h2>Why Accessibility Matters</h2>\n<ul>\n<li><strong>1 in 4 adults</strong> in the US has some type of disability</li>\n<li>Accessible sites rank better in search engines</li>\n<li>It&#39;s a <strong>legal requirement</strong> in many countries</li>\n<li>Good accessibility is good UX for everyone</li>\n</ul>\n<h2>Semantic HTML First</h2>\n<p>The foundation of accessibility is semantic HTML. Use the right elements for the right purpose:</p>\n<pre><code class=\"language-html\">&lt;!-- Bad --&gt;\n&lt;div class=&quot;button&quot; onclick=&quot;submit()&quot;&gt;Submit&lt;/div&gt;\n\n&lt;!-- Good --&gt;\n&lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;\n</code></pre>\n<p>Semantic elements provide built-in keyboard support, screen reader announcements, and focus management for free.</p>\n<h2>ARIA Attributes</h2>\n<p>When semantic HTML isn&#39;t enough, ARIA (Accessible Rich Internet Applications) attributes bridge the gap:</p>\n<pre><code class=\"language-html\">&lt;div role=&quot;alert&quot; aria-live=&quot;polite&quot;&gt;\n  Your form has been submitted successfully.\n&lt;/div&gt;\n\n&lt;button aria-expanded=&quot;false&quot; aria-controls=&quot;menu&quot;&gt;\n  Toggle Menu\n&lt;/button&gt;\n</code></pre>\n<h3>Key ARIA Rules</h3>\n<ol>\n<li><strong>Don&#39;t use ARIA if native HTML works</strong> — a <code>&lt;button&gt;</code> is better than <code>&lt;div role=&quot;button&quot;&gt;</code></li>\n<li><strong>Don&#39;t change native semantics</strong> — don&#39;t add <code>role=&quot;button&quot;</code> to a <code>&lt;h2&gt;</code></li>\n<li><strong>All interactive ARIA elements must be keyboard accessible</strong></li>\n<li><strong>Don&#39;t use <code>role=&quot;presentation&quot;</code> or <code>aria-hidden=&quot;true&quot;</code> on visible, focusable elements</strong></li>\n</ol>\n<h2>Keyboard Navigation</h2>\n<p>Every interactive element must be reachable and operable via keyboard:</p>\n<pre><code class=\"language-css\">/* Always provide visible focus styles */\n:focus-visible {\n  outline: 2px solid #3b82f6;\n  outline-offset: 2px;\n}\n</code></pre>\n<p>Test your app by navigating with <strong>Tab</strong>, <strong>Shift+Tab</strong>, <strong>Enter</strong>, and <strong>Escape</strong> keys.</p>\n<h2>Color and Contrast</h2>\n<ul>\n<li>Maintain a <strong>minimum contrast ratio of 4.5:1</strong> for normal text</li>\n<li>Use <strong>3:1</strong> for large text (18px+ or 14px+ bold)</li>\n<li>Never rely on color alone to convey information</li>\n</ul>\n<h2>Testing Tools</h2>\n<ul>\n<li><strong>axe DevTools</strong> — browser extension for automated a11y audits</li>\n<li><strong>Lighthouse</strong> — built into Chrome DevTools</li>\n<li><strong>NVDA / VoiceOver</strong> — screen readers for manual testing</li>\n<li><strong>Keyboard-only testing</strong> — navigate without a mouse</li>\n</ul>\n<h2>Conclusion</h2>\n<p>Accessibility isn&#39;t an afterthought — it&#39;s a fundamental part of web development. By using semantic HTML, proper ARIA attributes, and keyboard navigation, you can build web applications that truly work for everyone.</p>\n"
+		},
+		{
+			"slug": "tailwind-css-4-whats-new",
+			"title": "Tailwind CSS 4: What's New",
+			"description": "Exploring the latest features in Tailwind CSS v4 including the new engine, custom variants, and performance improvements.",
+			"date": "2025-02-01T00:00:00.000Z",
+			"tags": [
+				"CSS",
+				"TailwindCSS"
+			],
+			"readTime": "4 min read",
+			"content": "<p>Tailwind CSS v4 is a major leap forward, featuring a completely rewritten engine built in Rust for blazing-fast performance. Let&#39;s explore what&#39;s new.</p>\n<h2>The New Oxide Engine</h2>\n<p>Tailwind CSS v4 introduces the <strong>Oxide engine</strong>, rewritten from the ground up in Rust. The result? Build times that are up to <strong>10x faster</strong> than v3.</p>\n<h2>CSS-First Configuration</h2>\n<p>Gone is the <code>tailwind.config.js</code> file. In v4, you configure everything directly in CSS:</p>\n<pre><code class=\"language-css\">@import &quot;tailwindcss&quot;;\n\n@theme {\n  --color-primary: #3b82f6;\n  --breakpoint-3xl: 1920px;\n}\n</code></pre>\n<h2>New <code>@custom-variant</code> Directive</h2>\n<p>Define your own variants right in CSS:</p>\n<pre><code class=\"language-css\">@custom-variant dark (&amp;:where(.dark, .dark *));\n</code></pre>\n<h2>Automatic Content Detection</h2>\n<p>Tailwind v4 automatically detects your template files — no more configuring <code>content</code> paths manually.</p>\n<h2>Improved Performance</h2>\n<p>The new engine delivers:</p>\n<ul>\n<li><strong>10x faster</strong> full builds</li>\n<li><strong>100x faster</strong> incremental builds</li>\n<li>Smaller output CSS files</li>\n<li>Better tree-shaking</li>\n</ul>\n<h2>Migration from v3</h2>\n<p>The migration is straightforward for most projects:</p>\n<ol>\n<li>Update the package to v4</li>\n<li>Replace <code>tailwind.config.js</code> with CSS-based configuration</li>\n<li>Update any deprecated utilities</li>\n<li>Test and verify</li>\n</ol>\n<h2>Conclusion</h2>\n<p>Tailwind CSS v4 is a massive upgrade in both performance and developer experience. The CSS-first approach feels more natural, and the speed improvements make the development workflow even smoother.</p>\n"
+		},
+		{
+			"slug": "getting-started-with-angular-signals",
+			"title": "Getting Started with Angular Signals",
+			"description": "An introduction to Angular's reactive primitive, signals, and how they simplify state management in modern Angular applications.",
+			"date": "2025-01-15T00:00:00.000Z",
+			"tags": [
+				"Angular",
+				"TypeScript"
+			],
+			"readTime": "5 min read",
+			"content": "<p>Angular Signals represent a fundamental shift in how we handle reactivity in Angular applications. Introduced as a developer preview in Angular 16 and stabilized in Angular 17, signals provide a simpler, more predictable way to manage state.</p>\n<h2>What Are Signals?</h2>\n<p>A signal is a wrapper around a value that notifies interested consumers when that value changes. Unlike RxJS observables, signals are <strong>synchronous</strong> and always have a current value.</p>\n<pre><code class=\"language-typescript\">import { signal, computed, effect } from &#39;@angular/core&#39;;\n\n// Create a writable signal\nconst count = signal(0);\n\n// Read the value\nconsole.log(count()); // 0\n\n// Update the value\ncount.set(5);\ncount.update(v =&gt; v + 1);\n</code></pre>\n<h2>Computed Signals</h2>\n<p>Computed signals derive their value from other signals. They&#39;re lazy — they only recalculate when read, and they cache their result.</p>\n<pre><code class=\"language-typescript\">const firstName = signal(&#39;John&#39;);\nconst lastName = signal(&#39;Doe&#39;);\n\nconst fullName = computed(() =&gt; `${firstName()} ${lastName()}`);\n\nconsole.log(fullName()); // &quot;John Doe&quot;\n</code></pre>\n<h2>Effects</h2>\n<p>Effects are operations that run whenever one or more signal values change. They&#39;re useful for side effects like logging or syncing with external systems.</p>\n<pre><code class=\"language-typescript\">effect(() =&gt; {\n  console.log(`Count changed to: ${count()}`);\n});\n</code></pre>\n<h2>Using Signals in Components</h2>\n<p>Signals integrate naturally with Angular&#39;s template system:</p>\n<pre><code class=\"language-typescript\">@Component({\n  selector: &#39;app-counter&#39;,\n  template: `\n    &lt;p&gt;Count: {{ count() }}&lt;/p&gt;\n    &lt;button (click)=&quot;increment()&quot;&gt;+1&lt;/button&gt;\n  `,\n})\nexport class CounterComponent {\n  count = signal(0);\n\n  increment() {\n    this.count.update(v =&gt; v + 1);\n  }\n}\n</code></pre>\n<h2>Why Signals Over RxJS?</h2>\n<table>\n<thead>\n<tr>\n<th>Feature</th>\n<th>Signals</th>\n<th>RxJS</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Synchronous</td>\n<td>Yes</td>\n<td>No</td>\n</tr>\n<tr>\n<td>Always has value</td>\n<td>Yes</td>\n<td>No</td>\n</tr>\n<tr>\n<td>Learning curve</td>\n<td>Low</td>\n<td>High</td>\n</tr>\n<tr>\n<td>Use case</td>\n<td>UI state</td>\n<td>Async streams</td>\n</tr>\n</tbody></table>\n<p>Signals don&#39;t replace RxJS — they complement it. Use signals for synchronous UI state and RxJS for complex async operations like HTTP requests.</p>\n<h2>Conclusion</h2>\n<p>Angular Signals simplify reactive programming in Angular. They&#39;re easy to learn, integrate well with templates, and provide excellent performance through fine-grained reactivity. Start using them today in your Angular 17+ projects!</p>\n"
 		}
 	]
 }

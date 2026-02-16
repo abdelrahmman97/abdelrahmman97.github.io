@@ -1,5 +1,5 @@
 <main
-	class="container max-w-2xl mx-auto h-full transition-all border-x"
+	class="container max-w-2xl mx-auto transition-all border-x"
 	[class.border-transparent]="!headerScrollClass()"
 	[class.dark:border-gray-800]="headerScrollClass()">
 	<a
@@ -29,7 +29,7 @@
 		<div class="line line-3"></div>
 	</div>
 
-	<div id="main-content" class="flex flex-col h-full z-50 bg-white dark:bg-gray-950 dark:shadow relative">
+	<div id="main-content" class="flex flex-col z-50 bg-white dark:bg-gray-950 dark:shadow relative">
 		<app-header
 			[class.sticky]="headerScrollClass()"
 			[class.top-0]="headerScrollClass()"
@@ -38,7 +38,7 @@
 			[class.border-transparent]="!headerScrollClass()"
 			[class.dark:border-gray-800]="headerScrollClass()"
 			class="transition-all"></app-header>
-		<div [@routeAnimations]="prepareRoute(outlet)">
+		<div [@routeAnimations]="prepareRoute(outlet)" class="h-full">
 			<router-outlet #outlet="outlet"></router-outlet>
 		</div>
 		<app-footer></app-footer>

@@ -1,30 +1,22 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { BlogService } from 'src/app/shared/services/blog.service';
-import { BlogPost } from 'src/app/shared/models/blog.model';
 
 @Component( {
 	selector: 'app-blog',
 	templateUrl: './blog.component.html',
 	styleUrl: './blog.component.css',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [ DatePipe ],
+	imports: [ DatePipe, RouterLink ],
 } )
 export class BlogComponent implements OnInit {
 	private _blogService = inject( BlogService );
 
-	posts = signal<BlogPost[]>( [] );
-	isLoading = signal( true );
+	posts = computed( () => this._blogService.posts() );
+	isLoading = computed( () => this._blogService.loading() );
 
 	ngOnInit(): void {
-		this._blogService.getPosts().subscribe( {
-			next: ( data ) => {
-				this.posts.set( data.posts );
-				this.isLoading.set( false );
-			},
-			error: () => {
-				this.isLoading.set( false );
-			},
-		} );
+		this._blogService.loadPosts();
 	}
 }
