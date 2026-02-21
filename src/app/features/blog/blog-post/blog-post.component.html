@@ -7,7 +7,9 @@
 			<a routerLink="/blog" class="text-[#FEA55F] hover:underline">Back to blog</a>
 		</div>
 	} @else {
-		<a routerLink="/blog" class="inline-flex items-center gap-1 text-sm text-gray-500 dark:text-gray-600 hover:text-[#FEA55F] mb-6">
+		<a
+			routerLink="/blog"
+			class="inline-flex items-center gap-1 text-sm text-gray-500 dark:text-gray-600 hover:text-[#FEA55F] mb-6">
 			&larr; Back to blog
 		</a>
 
@@ -22,7 +24,8 @@
 				</div>
 				<div class="flex flex-wrap gap-2 mt-3">
 					@for (tag of post()!.tags; track tag) {
-						<span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-full">
+						<span
+							class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-full">
 							{{ tag }}
 						</span>
 					}
