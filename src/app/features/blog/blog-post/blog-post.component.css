@@ -1,33 +1,33 @@
-:host { display: block }
+app-blog-post { display: block }
 
-.prose { line-height: 1.75; color: #374151 }
-.prose :first-child { margin-top: 0 }
-.prose h2 { font-size: 1.5rem; font-weight: 700; margin: 2rem 0 1rem; color: #111827 }
-.prose h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 .75rem; color: #111827 }
-.prose p { margin: 1rem 0 }
-.prose a { color: #fea55f; text-decoration: underline }
-.prose a:hover { color: #ffac6b }
-.prose strong { font-weight: 700; color: #111827 }
-.prose ul, .prose ol { margin: 1rem 0; padding-left: 1.5rem }
-.prose ul { list-style: disc }
-.prose ol { list-style: decimal }
-.prose li { margin: .25rem 0 }
-.prose code { font-family: 'FiraCode', monospace; font-size: .875rem; background: #f3f4f6; padding: .125rem .375rem; border-radius: .25rem; color: #ef4444 }
-.prose pre { margin: 1.5rem 0; padding: 1rem; background: #1e293b; border-radius: .5rem; overflow-x: auto }
-.prose pre code { background: transparent; padding: 0; color: #e2e8f0 }
-.prose blockquote { border-left: 4px solid #fea55f; padding-left: 1rem; margin: 1.5rem 0; font-style: italic; color: #6b7280 }
-.prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .875rem }
-.prose th, .prose td { padding: .5rem .75rem; border: 1px solid #e5e7eb; text-align: left }
-.prose th { background: #f9fafb; font-weight: 600; color: #111827 }
-.prose hr { border: none; border-top: 1px solid #e5e7eb; margin: 2rem 0 }
-.prose img { max-width: 100%; border-radius: .5rem; margin: 1.5rem 0 }
+app-blog-post .prose { line-height: 1.75; color: #374151 }
+app-blog-post .prose :first-child { margin-top: 0 }
+app-blog-post .prose h2 { font-size: 1.5rem; font-weight: 700; margin: 2rem 0 1rem; color: #111827 }
+app-blog-post .prose h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 .75rem; color: #111827 }
+app-blog-post .prose p { margin: 1rem 0 }
+app-blog-post .prose a { color: #fea55f; text-decoration: underline }
+app-blog-post .prose a:hover { color: #ffac6b }
+app-blog-post .prose strong { font-weight: 700; color: #111827 }
+app-blog-post .prose ul, app-blog-post .prose ol { margin: 1rem 0; padding-left: 1.5rem }
+app-blog-post .prose ul { list-style: disc }
+app-blog-post .prose ol { list-style: decimal }
+app-blog-post .prose li { margin: .25rem 0 }
+app-blog-post .prose code { font-family: 'FiraCode', monospace; font-size: .875rem; background: #f3f4f6; padding: .125rem .375rem; border-radius: .25rem; color: #ef4444 }
+app-blog-post .prose pre { margin: 1.5rem 0; padding: 1rem; background: #1e293b; border-radius: .5rem; overflow-x: auto }
+app-blog-post .prose pre code { background: transparent; padding: 0; color: #e2e8f0 }
+app-blog-post .prose blockquote { border-left: 4px solid #fea55f; padding-left: 1rem; margin: 1.5rem 0; font-style: italic; color: #6b7280 }
+app-blog-post .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .875rem }
+app-blog-post .prose th, app-blog-post .prose td { padding: .5rem .75rem; border: 1px solid #e5e7eb; text-align: left }
+app-blog-post .prose th { background: #f9fafb; font-weight: 600; color: #111827 }
+app-blog-post .prose hr { border: none; border-top: 1px solid #e5e7eb; margin: 2rem 0 }
+app-blog-post .prose img { max-width: 100%; border-radius: .5rem; margin: 1.5rem 0 }
 
 /* Dark mode */
-:host-context(.dark) .prose { color: #9ca3af }
-:host-context(.dark) .prose h2, :host-context(.dark) .prose h3, :host-context(.dark) .prose th { color: #d1d5db }
-:host-context(.dark) .prose strong { color: #e5e7eb }
-:host-context(.dark) .prose code { background: #1f2937; color: #fbbf24 }
-:host-context(.dark) .prose blockquote { color: #9ca3af }
-:host-context(.dark) .prose th, :host-context(.dark) .prose td { border-color: #374151 }
-:host-context(.dark) .prose th { background: #1f2937 }
-:host-context(.dark) .prose hr { border-color: #374151 }
+.dark app-blog-post .prose { color: #9ca3af }
+.dark app-blog-post .prose h2, .dark app-blog-post .prose h3, .dark app-blog-post .prose th { color: #d1d5db }
+.dark app-blog-post .prose strong { color: #e5e7eb }
+.dark app-blog-post .prose code { background: #1f2937; color: #fbbf24 }
+.dark app-blog-post .prose blockquote { color: #9ca3af }
+.dark app-blog-post .prose th, .dark app-blog-post .prose td { border-color: #374151 }
+.dark app-blog-post .prose th { background: #1f2937 }
+.dark app-blog-post .prose hr { border-color: #374151 }

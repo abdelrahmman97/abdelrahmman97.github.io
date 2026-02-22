@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BlogService } from 'src/app/shared/services/blog.service';
 import { SafeHtmlPipe } from 'src/app/shared/pipes/safe-html-pipe.pipe';
@@ -8,6 +8,7 @@ import { SafeHtmlPipe } from 'src/app/shared/pipes/safe-html-pipe.pipe';
 	templateUrl: './blog-post.component.html',
 	styleUrl: './blog-post.component.css',
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	encapsulation: ViewEncapsulation.None,
 	imports: [ SafeHtmlPipe, RouterLink ],
 } )
 export class BlogPostComponent implements OnInit {
