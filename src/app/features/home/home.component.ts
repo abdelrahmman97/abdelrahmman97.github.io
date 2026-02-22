@@ -4,7 +4,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 	selector: 'app-home',
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.css',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [],
-	changeDetection: ChangeDetectionStrategy.OnPush
 } )
-export class HomeComponent {}
+export class HomeComponent {
+	yearsOfExperience = new Date().getFullYear() - 2024;
+}
