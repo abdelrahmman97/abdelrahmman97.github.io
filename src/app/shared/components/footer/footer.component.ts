@@ -18,7 +18,7 @@ export class FooterComponent {
 		},
 		{
 			label: 'LinkedIn',
-			url: 'https://linkedin.com/in/abdelrahmman97',
+			url: 'https://www.linkedin.com/in/abdelrahman1097',
 			icon: 'ri-linkedin-fill',
 		},
 		{
